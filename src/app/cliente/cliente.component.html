@@ -1,1 +1,25 @@
-<p>cliente works!</p>
+<div>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+    <input name="nome" #nome="ngModel" ngModel required><br>
+    <input name="sobrenome" ngModel><br>
+    <button (click)="printNome(nome.value)">Salvar</button>
+  </form>
+
+  <p>Primeiro nome: {{ nome.value }}</p>
+  <p>Primeiro nome válido: {{ nome.valid }}</p>
+
+  <p>Formulário: {{ form.value | json }}</p>
+  <p>Formulário válido: {{ form.valid }}</p>
+
+
+  <br><br><br>
+
+  <form #formProd="ngForm" (ngSubmit)="onSubmitProd(formProd)" novalidate>
+    <input name="nome" #nome="ngModel" ngModel required><br>
+    <input name="preco" ngModel required><br>
+    <input type="submit" value="Salvar">
+  </form>
+
+  <p>Formulário de Produto: {{ formProd.value | json }}</p>
+  <p>Formulário válido: {{ formProd.valid }}</p>
+</div>

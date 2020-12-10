@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Fornecedor } from './../model/fornecedor.model';
 
 @Component({
   selector: 'app-fornecedor',
@@ -8,19 +8,25 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FornecedorComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  fornecedor:Fornecedor = { nome: "" };
+  error:boolean = false;
+  errorDesc:string = "";
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-
-      var id = params['id'];
-
-      if (id == 1){
-        console.log("João");
-      } else {
-        console.log("Fornecedor não encontrado!");
-      }
-    });
   }
 
+  onSend(){
+    console.log(this.fornecedor);
+
+    if (!this.fornecedor.nome){
+      this.error = true;
+      this.errorDesc = "Preencha o nome";
+    } else {
+      this.error = false;
+    }
+
+
+  }
 }
